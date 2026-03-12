@@ -185,3 +185,21 @@ input:checked + .slider:before { transform: translateX(20px); }
     .logs-panel { width: 100%; }
     .modal-content { width: 90% !important; margin: auto; position: static !important; }
 }
+/* AJUSTE APENAS PARA O BOTÃO DE FECHAR NO CELULAR */
+@media screen and (max-width: 950px) {
+    .close-btn {
+        position: absolute !important;
+        top: 10px !important;
+        right: 10px !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        padding: 5px 10px !important;
+        border-radius: 5px !important;
+        z-index: 9999 !important;
+        font-size: 0.8rem !important;
+    }
+
+    .modal-content {
+        padding-top: 50px !important; /* Abre espaço pro botão não ficar em cima do texto */
+        position: relative !important;
+    }
+}
