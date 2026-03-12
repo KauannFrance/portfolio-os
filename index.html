@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kauan Silva | Dashboard OS v3.0</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
 
@@ -15,8 +15,11 @@
     <header class="fixed-ui">
         <div class="header-brand">KAUAN_DEV_OS // V3.0</div>
         <div class="header-controls">
-            <div class="header-clock" id="hora">00:00:00</div>
-            <label class="theme-switch"><input type="checkbox" id="checkbox"><span class="slider"></span></label>
+            <div class="header-clock" id="clock">00:00:00</div>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
         </div>
     </header>
 
@@ -49,14 +52,14 @@
                     <div class="glass-panel bento-item network-card">
                         <h3>> NETWORK_PORTS</h3>
                         <ul class="port-list">
-                            <li><span class="port-num">PORT 443 (HTTPS)</span> <span class="port-status open">[OPEN]</span> <a href="#" target="_blank" class="port-link">LINKEDIN</a></li>
-                            <li><span class="port-num">PORT 22 (SSH)</span> <span class="port-status open">[OPEN]</span> <a href="#" target="_blank" class="port-link">GITHUB</a></li>
+                            <li><span class="port-num">PORT 443 (HTTPS)</span> <span class="port-status open">[OPEN]</span> <a href="https://linkedin.com" target="_blank" class="port-link">LINKEDIN</a></li>
+                            <li><span class="port-num">PORT 22 (SSH)</span> <span class="port-status open">[OPEN]</span> <a href="https://github.com/KauannFrance" target="_blank" class="port-link">GITHUB</a></li>
                             <li><span class="port-num">PORT 25 (SMTP)</span> <span class="port-status open">[OPEN]</span> <a href="mailto:kauanfrance7@gmail.com" class="port-link">EMAIL_SECURE</a></li>
                         </ul>
                     </div>
 
                     <div class="glass-panel bento-item skills-card">
-                        <h3>> RESOURCE_ALLOCATION (SKILLS)</h3>
+                        <h3>> RESOURCE_ALLOCATION</h3>
                         <div class="skills-container">
                             <div class="skill-row">
                                 <div class="skill-label">PYTHON_CORE <span class="skill-pct">85%</span></div>
@@ -69,10 +72,6 @@
                             <div class="skill-row">
                                 <div class="skill-label">PANDAS_ANALYTICS <span class="skill-pct">75%</span></div>
                                 <div class="skill-bar"><div class="skill-fill" style="width: 75%;"></div></div>
-                            </div>
-                            <div class="skill-row">
-                                <div class="skill-label">POWER_BI_VIZ <span class="skill-pct">70%</span></div>
-                                <div class="skill-bar"><div class="skill-fill" style="width: 70%;"></div></div>
                             </div>
                         </div>
                     </div>
@@ -92,8 +91,8 @@
 
             <div class="glass-panel widget-weather">
                 <p class="weather-title">SAO_PAULO_ZONE</p>
-                <img id="clima-icone" src="" alt="clima">
-                <div id="temp">--°</div>
+                <img id="clima-icone" src="" alt="">
+                <div id="temp">--°C</div>
             </div>
             
             <div class="glass-panel widget-status">
@@ -108,22 +107,22 @@
             <div class="repo-wrapper">
                 <h2 class="section-title">> SYSTEM_REPOSITORY_ACCESS</h2>
                 <div class="repo-grid">
-                    <div class="card-mini" data-projeto="01"><h4>01</h4><p>Scanner</p></div>
-                    <div class="card-mini" data-projeto="02"><h4>02</h4><p>Keylogger</p></div>
-                    <div class="card-mini" data-projeto="03"><h4>03</h4><p>Weather</p></div>
-                    <div class="card-mini" data-projeto="04"><h4>04</h4><p>Scraping</p></div>
-                    <div class="card-mini" data-projeto="05"><h4>05</h4><p>Crypto</p></div>
-                    <div class="card-mini" data-projeto="06"><h4>06</h4><p>Network</p></div>
-                    <div class="card-mini" data-projeto="07"><h4>07</h4><p>SQLi</p></div>
-                    <div class="card-mini" data-projeto="08"><h4>08</h4><p>Brute</p></div>
-                    <div class="card-mini" data-projeto="09"><h4>09</h4><p>Wi-Fi</p></div>
-                    <div class="card-mini" data-projeto="10"><h4>10</h4><p>Sandbox</p></div>
-                    <div class="card-mini" data-projeto="11"><h4>11</h4><p>Firewall</p></div>
-                    <div class="card-mini" data-projeto="12"><h4>12</h4><p>Phishing</p></div>
-                    <div class="card-mini" data-projeto="13"><h4>13</h4><p>Hash</p></div>
-                    <div class="card-mini" data-projeto="14"><h4>14</h4><p>Proxy</p></div>
-                    <div class="card-mini" data-projeto="15"><h4>15</h4><p>OSINT</p></div>
-                    <div class="card-mini" data-projeto="16"><h4>16</h4><p>Portfolio</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('01')"><h4>01</h4><p>Scanner</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('02')"><h4>02</h4><p>Keylogger</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('03')"><h4>03</h4><p>Weather</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('04')"><h4>04</h4><p>Scraping</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('05')"><h4>05</h4><p>Crypto</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('06')"><h4>06</h4><p>Network</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('07')"><h4>07</h4><p>SQLi</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('08')"><h4>08</h4><p>Brute</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('09')"><h4>09</h4><p>Wi-Fi</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('10')"><h4>10</h4><p>Sandbox</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('11')"><h4>11</h4><p>Firewall</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('12')"><h4>12</h4><p>Phishing</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('13')"><h4>13</h4><p>Hash</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('14')"><h4>14</h4><p>Proxy</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('15')"><h4>15</h4><p>OSINT</p></div>
+                    <div class="card-mini" onclick="abrirProjeto('16')"><h4>16</h4><p>Portfolio</p></div>
                 </div>
             </div>
         </section>
@@ -140,7 +139,7 @@
                     <p><strong>Amazon</strong> | Vendedor Autônomo. Logística e Gestão de Métricas.</p>
                 </div>
                 
-                <hr class="divider">
+                <hr class="divider" style="margin: 20px 0; border: 0; border-top: 1px solid var(--glass-border);">
 
                 <h3>> ACADEMIC_FORMATION</h3>
                 <div class="log-item">
@@ -152,7 +151,7 @@
 
     </main>
 
-    <div id="project-overlay" class="overlay-hidden">
+    <div id="project-overlay" style="display: none;">
         <div class="glass-panel modal-content">
             <button class="close-btn" onclick="fecharProjeto()">[X] CLOSE</button>
             <div id="project-details"></div>
