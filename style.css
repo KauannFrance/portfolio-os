@@ -104,7 +104,7 @@ body {
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
 
-/* ================= GRID DE TECNOLOGIAS (NOVO) ================= */
+/* ================= GRID DE TECNOLOGIAS ================= */
 .skills-card h3 { font-size: 0.8rem; letter-spacing: 2px; color: var(--clima-color); margin-bottom: 20px; }
 .tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 15px; width: 100%; }
 .tech-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; transition: transform 0.3s ease; }
@@ -114,49 +114,8 @@ body {
 .tech-item span { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-p); font-weight: bold; text-align: center; }
 
 /* ================= WIDGETS FLUTUANTES (DESKTOP) ================= */
-/* ==================================================
-       ABDUÇÃO DO CLIMA: Tira do meio e joga pro topo 
-       ================================================== */
-    .widget-weather {
-        position: fixed !important; /* Tira ele da fila e fixa na tela */
-        top: 15px !important;       /* Altura do cabeçalho */
-        right: 70px !important;     /* Espaço para o botão de Dark Mode não sobrepor */
-        left: auto !important;
-        bottom: auto !important;
-        
-        width: auto !important;
-        height: 35px !important;
-        padding: 0 12px !important;
-        margin: 0 !important;
-        
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        gap: 8px !important;
-        
-        background: rgba(15, 23, 42, 0.95) !important;
-        border: 1px solid var(--glass-border) !important;
-        border-radius: 20px !important;
-        z-index: 99999 !important; /* Garante que fica acima de TUDO */
-        transform: none !important;
-    }
 
-    /* Esconde o texto "SAO_PAULO_ZONE" para caber */
-    .weather-title { display: none !important; }
-
-    /* Encolhe o Ícone e o Texto da Temperatura */
-    #clima-icone { 
-        width: 22px !important; 
-        height: 22px !important; 
-        margin: 0 !important; 
-        filter: none !important;
-    }
-    #temp { 
-        font-size: 1rem !important; 
-        font-weight: bold !important; 
-        margin: 0 !important; 
-        line-height: 1 !important;
-    }
+.widget-weather { position: absolute; right: 60px; top: 100px; width: 220px; text-align: center; padding: 25px; }
 .weather-title { font-size: 0.7rem; opacity: 0.6; letter-spacing: 2px; margin-bottom: 5px; }
 #temp { font-size: 3rem; font-weight: 800; color: var(--text-h1); line-height: 1; }
 #clima-icone { width: 70px; margin: 10px 0; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2)); }
@@ -224,27 +183,41 @@ input:checked + .slider:before { transform: translateX(20px); }
     .header-brand { font-size: 0.8rem !important; }
     .header-clock, .page-indicator { display: none !important; }
 
-    /* 3. O SEGREDO DO CLIMA NO MOBILE (Virou uma pílula no cabeçalho) */
-    .header-weather-fix {
-        position: relative !important;
-        top: auto !important; right: auto !important; left: auto !important; bottom: auto !important;
-        width: auto !important; height: 32px !important;
-        padding: 5px 10px !important; margin: 0 10px !important;
-        display: flex !important; flex-direction: row !important; align-items: center !important; gap: 5px !important;
-        background: rgba(56, 189, 248, 0.1) !important;
-        border-radius: 10px !important;
+    /* 3. O SEGREDO DO CLIMA NO MOBILE: A PÍLULA FLUTUANTE */
+    .widget-weather {
+        position: fixed !important; 
+        top: 10px !important;       
+        right: 75px !important;    
+        left: auto !important;
+        bottom: auto !important;
+        
+        width: auto !important;
+        height: 35px !important;
+        padding: 0 12px !important;
+        margin: 0 !important;
+        
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 6px !important;
+        
+        background: rgba(15, 23, 42, 0.95) !important;
+        border: 1px solid var(--glass-border) !important;
+        border-radius: 20px !important;
+        z-index: 99999 !important; 
         transform: none !important;
     }
-    .header-weather-fix #clima-icone { width: 20px !important; height: 20px !important; margin: 0 !important; }
-    .header-weather-fix #temp { font-size: 0.85rem !important; margin: 0 !important; }
-    .header-weather-fix .weather-title { display: none !important; }
+
+    .weather-title { display: none !important; }
+    #clima-icone { width: 22px !important; height: 22px !important; margin: 0 !important; filter: none !important; }
+    #temp { font-size: 1rem !important; font-weight: bold !important; margin: 0 !important; line-height: 1 !important; color: var(--text-h1) !important;}
 
     /* 4. Alinhamento dos Cards (Fila Indiana Segura) */
     .page-section { height: auto !important; min-height: 100vh !important; padding: 20px 15px !important; display: block !important; }
     .bento-wrapper { width: 100% !important; margin: 0 !important; }
     .bento-grid { display: flex !important; flex-direction: column !important; gap: 20px !important; width: 100% !important; }
     
-    .glass-panel { width: 100% !important; position: static !important; padding: 20px !important; margin-bottom: 0 !important; transform: none !important; }
+    .glass-panel:not(.widget-weather) { width: 100% !important; position: static !important; padding: 20px !important; margin-bottom: 0 !important; transform: none !important; }
     .terminal-card { grid-column: span 1 !important; }
     .term-body { font-size: 0.8rem !important; padding: 15px !important; }
 
