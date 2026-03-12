@@ -193,94 +193,93 @@ input:checked + .slider:before { transform: translateX(20px); }
 /* AJUSTE APENAS PARA O BOTÃO DE FECHAR NO CELULAR */
 /* ================= RESPONSIVIDADE MOBILE REVISADA ================= */
 @media screen and (max-width: 950px) {
+    /* 1. RESET DE FLUXO */
     body { 
         overflow-y: auto !important; 
         height: auto !important; 
-        background-attachment: scroll !important;
+        display: block !important;
     }
 
     .main-scroll-container { 
-        scroll-snap-type: none !important; 
-        overflow-y: visible !important; 
+        display: block !important;
         height: auto !important; 
+        overflow: visible !important;
     }
 
-    /* 1. HEADER: Limpa a barra do topo */
+    /* 2. HEADER: Ajuste para não sobrepor */
     .fixed-ui { 
-        position: fixed !important;
-        padding: 15px !important; 
-        background: rgba(8, 10, 15, 0.95) !important; 
-        backdrop-filter: blur(10px);
-        height: 70px !important;
-        border-bottom: 1px solid var(--glass-border);
+        position: relative !important; /* Deixa de ser fixo para não cobrir o conteúdo */
+        padding: 20px !important;
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 10px !important;
+        pointer-events: auto !important;
     }
     
-    .header-brand { font-size: 0.7rem !important; letter-spacing: 1px !important; }
+    .header-brand { text-align: center !important; width: 100% !important; }
+    .header-controls { justify-content: center !important; width: 100% !important; }
     
-    /* ESCONDE O RELÓGIO E AS BOLINHAS LATERAIS NO MOBILE (Ocupam muito espaço) */
-    .header-clock, .page-indicator { display: none !important; }
+    /* ESCONDE O QUE É DESNECESSÁRIO NO MOBILE */
+    .header-clock, .page-indicator, .weather-title { display: none !important; }
 
-    /* 2. CLIMA: Versão Mini Pílula no topo */
+    /* 3. CLIMA: Versão pequena e simples */
     .widget-weather {
-        position: absolute !important;
-        top: 15px !important; /* Dentro da barra fixa */
-        right: 65px !important; /* Do lado do switch de tema */
-        width: auto !important;
-        height: 35px !important;
-        padding: 0 10px !important;
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 150px !important;
+        margin: 10px auto !important;
+        padding: 10px !important;
         display: flex !important;
         flex-direction: row !important;
-        align-items: center !important;
-        gap: 5px !important;
-        background: var(--glass) !important;
-        border-radius: 20px !important;
-        z-index: 10001 !important;
+        justify-content: center !important;
+        border-radius: 15px !important;
     }
-    .weather-title { display: none !important; }
-    #clima-icone { width: 20px !important; margin: 0 !important; }
-    #temp { font-size: 0.9rem !important; margin: 0 !important; }
+    #clima-icone { width: 25px !important; }
+    #temp { font-size: 1.2rem !important; }
 
-    /* 3. SEÇÃO PRINCIPAL */
+    /* 4. SEÇÕES E GRIDS */
     .page-section { 
         height: auto !important; 
-        min-height: 100vh; 
-        padding: 100px 15px 40px 15px !important; 
-        display: block !important; /* Empilha tudo */
+        min-height: 100vh !important;
+        padding: 20px 15px !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
 
-    /* 4. BENTO GRID: Estica os cards */
     .bento-wrapper { width: 100% !important; margin: 0 !important; }
     
     .bento-grid { 
         display: flex !important; 
         flex-direction: column !important; 
-        gap: 15px !important; 
+        gap: 20px !important; 
     }
 
-    .glass-panel { padding: 20px !important; width: 100% !important; }
-
-    /* 5. TERMINAL E SKILLS */
-    .terminal-card, .skills-card, .network-card { 
-        grid-column: span 1 !important; 
+    /* 5. FORÇAR TODOS OS PAINÉIS A SEREM IGUAIS */
+    .glass-panel, .terminal-card, .skills-card, .network-card, .widget-status { 
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
         width: 100% !important;
+        padding: 20px !important;
+        margin-bottom: 0 !important;
+        transform: none !important;
     }
+
+    /* Ajuste do Terminal */
+    .term-body { font-size: 0.85rem !important; padding: 15px !important; }
     
-    .term-body { font-size: 0.8rem !important; padding: 15px !important; }
-    
-    /* Grid de Techs: 3 por linha no mobile */
+    /* Grid de Techs */
     .tech-grid { 
         grid-template-columns: repeat(3, 1fr) !important; 
-        gap: 15px !important; 
     }
 
-    /* 6. STATUS E WIDGETS LATERAIS */
-    .widget-status { 
-        position: relative !important; 
-        right: auto !important; 
-        bottom: auto !important; 
-        width: 100% !important; 
-        text-align: left !important; 
-        margin-top: 15px !important;
-        padding: 20px !important;
+    /* 6. STATUS: Agora ele vira um card comum na lista */
+    .widget-status {
+        text-align: left !important;
+        margin-top: 20px !important;
     }
 }
