@@ -75,6 +75,56 @@ body {
 .id-status { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-top: 10px; border-top: 1px solid var(--glass-border); padding-top: 15px; }
 .pulse-dot { display: inline-block; width: 8px; height: 8px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 10px #00ff88; animation: pulse 1.5s infinite; margin-right: 5px; }
 
+/* ================= CONTATOS MINI ELEGANTES (NOVO) ================= */
+.mini-contacts {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.mini-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%; 
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.mini-btn img {
+    width: 20px;
+    height: 20px;
+    transition: 0.3s;
+}
+
+.mini-btn .email-icon {
+    font-size: 1.2rem;
+    color: var(--text-h1);
+    font-weight: bold;
+    font-family: 'JetBrains Mono', monospace;
+    transition: 0.3s;
+}
+
+.mini-btn:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: var(--clima-color);
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mini-btn:hover img {
+    filter: drop-shadow(0 0 5px var(--clima-color));
+}
+
+.mini-btn:hover .email-icon {
+    color: var(--clima-color);
+    text-shadow: 0 0 5px var(--clima-color);
+}
+
 /* TERMINAL */
 .terminal-card { 
     background: var(--term-bg) !important; 
@@ -104,17 +154,6 @@ body {
 .tech-item img { width: 32px; height: 32px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.3)); display: block; margin: 0 auto; }
 .icon-white { filter: invert(1) brightness(2) !important; }
 .tech-item span { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-p); font-weight: bold; text-align: center; }
-
-/* ================= PAINEL DE CONTATOS (NOVO) ================= */
-.contact-card h3 { font-size: 0.8rem; letter-spacing: 2px; color: var(--clima-color); margin-bottom: 20px; }
-.contact-grid { display: flex; flex-direction: column; gap: 15px; }
-.contact-btn { display: flex; align-items: center; gap: 15px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 20px; border-radius: 12px; text-decoration: none; color: var(--text-h1); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: bold; transition: all 0.3s ease; }
-.contact-btn img { width: 24px; height: 24px; transition: 0.3s; }
-.email-icon { font-size: 1.5rem; color: #00ff88; width: 24px; text-align: center; }
-.contact-btn:hover { background: rgba(56, 189, 248, 0.1); border-color: var(--clima-color); transform: translateX(10px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
-.contact-btn:hover img { filter: drop-shadow(0 0 8px var(--clima-color)); }
-.contact-btn:hover .email-icon { text-shadow: 0 0 8px #00ff88; }
-
 
 /* ================= WIDGETS FLUTUANTES (DESKTOP) ================= */
 
@@ -171,8 +210,8 @@ input:checked + .slider:before { transform: translateX(20px); }
        TRAVA DE ROLAGEM HORIZONTAL (FIM DO ARRASTO)
        ================================================== */
     html, body { 
-        overflow-x: hidden !important; /* Corta tudo que vazar pros lados */
-        max-width: 100vw !important;   /* Trava a largura máxima na tela */
+        overflow-x: hidden !important; 
+        max-width: 100vw !important;   
         width: 100% !important;
         overflow-y: auto !important; 
         height: auto !important; 
@@ -199,8 +238,8 @@ input:checked + .slider:before { transform: translateX(20px); }
         background: var(--bg-body) !important;
         border-bottom: 1px solid var(--glass-border) !important;
         z-index: 9999 !important;
-        width: 100% !important; /* Adicionado para garantir o alinhamento no lock */
-        box-sizing: border-box !important; /* Adicionado para evitar overflow do padding */
+        width: 100% !important; 
+        box-sizing: border-box !important; 
     }
     .header-brand { font-size: 0.8rem !important; }
     .header-clock, .page-indicator { display: none !important; }
@@ -240,7 +279,7 @@ input:checked + .slider:before { transform: translateX(20px); }
         min-height: 100vh !important; 
         padding: 20px 15px !important; 
         display: block !important; 
-        box-sizing: border-box !important; /* Evita que o padding alargue a tela */
+        box-sizing: border-box !important; 
         width: 100% !important;
     }
     .bento-wrapper { width: 100% !important; margin: 0 !important; box-sizing: border-box !important; }
@@ -252,7 +291,7 @@ input:checked + .slider:before { transform: translateX(20px); }
         padding: 20px !important; 
         margin-bottom: 0 !important; 
         transform: none !important; 
-        box-sizing: border-box !important; /* Essencial para evitar scroll horizontal */
+        box-sizing: border-box !important; 
     }
     
     .terminal-card { grid-column: span 1 !important; }
