@@ -161,39 +161,13 @@ input:checked + .slider:before { transform: translateX(20px); }
 .loader-content p { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; color: var(--clima-color); letter-spacing: 4px; animation: pulse 1s infinite; }
 
 @media screen and (max-width: 950px) {
-    /* Widget Clima versão 'Pílula' no Mobile */
-    .widget-weather {
-        position: absolute !important;
-        top: 80px !important; /* Logo abaixo do cabeçalho */
-        right: 15px !important;
-        width: auto !important;
-        height: 40px !important;
-        padding: 5px 15px !important;
-        display: flex !important;
-        flex-direction: row !important; /* Ícone do lado do texto */
-        align-items: center !important;
-        gap: 8px !important;
-        border-radius: 50px !important; /* Formato de pílula */
-        background: rgba(15, 23, 42, 0.9) !important;
+    /* 1. RESET TOTAL DE COMPORTAMENTO */
+    * { 
+        position: static !important; 
+        transform: none !important; 
+        box-shadow: none !important;
     }
 
-    .weather-title { display: none !important; } /* Esconde o texto 'SAO_PAULO_ZONE' */
-    
-    #clima-icone { 
-        width: 25px !important; 
-        margin: 0 !important; 
-    }
-
-    #temp { 
-        font-size: 1rem !important; 
-        margin: 0 !important; 
-    }
-}
-
-/* AJUSTE APENAS PARA O BOTÃO DE FECHAR NO CELULAR */
-/* ================= RESPONSIVIDADE MOBILE REVISADA ================= */
-@media screen and (max-width: 950px) {
-    /* 1. RESET DE FLUXO */
     body { 
         overflow-y: auto !important; 
         height: auto !important; 
@@ -201,51 +175,47 @@ input:checked + .slider:before { transform: translateX(20px); }
     }
 
     .main-scroll-container { 
-        display: block !important;
+        display: block !important; 
         height: auto !important; 
-        overflow: visible !important;
     }
 
-    /* 2. HEADER: Ajuste para não sobrepor */
+    /* 2. HEADER (NOME E TEMA) */
     .fixed-ui { 
-        position: relative !important; /* Deixa de ser fixo para não cobrir o conteúdo */
-        padding: 20px !important;
-        flex-direction: column !important;
-        height: auto !important;
-        gap: 10px !important;
-        pointer-events: auto !important;
-    }
-    
-    .header-brand { text-align: center !important; width: 100% !important; }
-    .header-controls { justify-content: center !important; width: 100% !important; }
-    
-    /* ESCONDE O QUE É DESNECESSÁRIO NO MOBILE */
-    .header-clock, .page-indicator, .weather-title { display: none !important; }
-
-    /* 3. CLIMA: Versão pequena e simples */
-    .widget-weather {
-        position: relative !important;
-        top: 0 !important;
-        right: 0 !important;
-        width: 100% !important;
-        max-width: 150px !important;
-        margin: 10px auto !important;
-        padding: 10px !important;
         display: flex !important;
         flex-direction: row !important;
-        justify-content: center !important;
-        border-radius: 15px !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 20px !important;
+        background: var(--bg-body) !important;
+        border-bottom: 1px solid var(--glass-border) !important;
+        position: sticky !important; /* Fica preso no topo enquanto rola */
+        top: 0 !important;
+        z-index: 9999 !important;
     }
-    #clima-icone { width: 25px !important; }
-    #temp { font-size: 1.2rem !important; }
+    
+    /* Esconde o que polui */
+    .header-clock, .page-indicator, .weather-title { display: none !important; }
 
-    /* 4. SEÇÕES E GRIDS */
-    .page-section { 
-        height: auto !important; 
-        min-height: 100vh !important;
-        padding: 20px 15px !important;
+    /* 3. CLIMA (Fica pequeno no cabeçalho) */
+    .widget-weather {
         display: flex !important;
-        flex-direction: column !important;
+        align-items: center !important;
+        gap: 5px !important;
+        background: var(--glass) !important;
+        padding: 5px 10px !important;
+        border-radius: 10px !important;
+        width: auto !important;
+        margin: 0 !important;
+    }
+    #clima-icone { width: 22px !important; height: 22px !important; }
+    #temp { font-size: 0.9rem !important; }
+
+    /* 4. CONTAINER DE CONTEÚDO */
+    .page-section { 
+        display: block !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding: 20px 15px !important;
     }
 
     .bento-wrapper { width: 100% !important; margin: 0 !important; }
@@ -254,32 +224,30 @@ input:checked + .slider:before { transform: translateX(20px); }
         display: flex !important; 
         flex-direction: column !important; 
         gap: 20px !important; 
+        width: 100% !important;
     }
 
-    /* 5. FORÇAR TODOS OS PAINÉIS A SEREM IGUAIS */
+    /* 5. CARDS (FORÇA UM EMBAIXO DO OUTRO) */
     .glass-panel, .terminal-card, .skills-card, .network-card, .widget-status { 
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
+        display: block !important;
         width: 100% !important;
         padding: 20px !important;
-        margin-bottom: 0 !important;
-        transform: none !important;
+        margin-bottom: 20px !important;
+        border-radius: 20px !important;
+        position: relative !important; /* Necessário para o conteúdo interno */
     }
 
-    /* Ajuste do Terminal */
-    .term-body { font-size: 0.85rem !important; padding: 15px !important; }
+    .term-body { font-size: 0.8rem !important; padding: 15px !important; }
     
-    /* Grid de Techs */
+    /* Grid de Techs (3 por linha no mobile) */
     .tech-grid { 
+        display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important; 
+        gap: 15px !important;
+        width: 100% !important;
     }
+    .tech-item img { width: 28px !important; height: 28px !important; }
 
-    /* 6. STATUS: Agora ele vira um card comum na lista */
-    .widget-status {
-        text-align: left !important;
-        margin-top: 20px !important;
-    }
+    /* 6. STATUS (Card final) */
+    .widget-status { text-align: left !important; }
 }
