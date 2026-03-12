@@ -1,4 +1,4 @@
-// BANCO DE DADOS DE PROJETOS
+// ================= BANCO DE DADOS DE PROJETOS =================
 const dadosProjetos = {
     "01": { titulo: "Neural File Scanner", descricao: "Análise de integridade SHA-256 para detecção de alterações não autorizadas em arquivos críticos.", tech: "Python, Hashlib", status: "SECURE" },
     "02": { titulo: "Kernel Keylogger", descricao: "Monitoramento de periféricos de entrada focado em testes de invasão física e auditoria.", tech: "Python, Pynput", status: "ACTIVE" },
@@ -45,163 +45,126 @@ function playTechBeep(tipo) {
 // ================= EVENTOS PRINCIPAIS =================
 document.addEventListener('DOMContentLoaded', () => {
 
-    // EFEITO MÁQUINA DE ESCREVER (TERMINAL)
-    const termText = "Estudante de ADS e Desenvolvedor Júnior. Apaixonado por programação, lógica e resolução de problemas reais. Buscando minha primeira oportunidade no mercado de tecnologia para aplicar meus conhecimentos, absorver novas stacks e gerar valor corporativo. Altamente adaptável e com extrema vontade de aprender. Mission Status: READY_FOR_DEPLOYMENT...";
-    
-    let i = 0;
-    function typeWriter() {
-        if (i < termText.length) {
-            document.getElementById("typewriter").innerHTML += termText.charAt(i);
-            i++;
-            setTimeout(typeWriter, 30); // Velocidade da digitação
-        }
-    }
-    setTimeout(typeWriter, 1500); // Começa a digitar após o loader sumir
-
-    // SCROLL E BOLINHAS
-    const container = document.querySelector('.main-scroll-container');
-    const dots = document.querySelectorAll('.dot');
-
-    if (container) {
-        container.addEventListener('scroll', () => {
-            const index = Math.round(container.scrollTop / window.innerHeight);
-            dots.forEach(dot => dot.classList.remove('active'));
-            if(dots[index]) dots[index].classList.add('active');
-        });
-    }
-
-    dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-            container.scrollTo({ top: i * window.innerHeight, behavior: 'smooth' });
-        });
-    });
-
-    // RELÓGIO
+    // 1. RELÓGIO (Corrigido para o ID 'clock' que está no seu HTML)
     setInterval(() => {
-        const h = document.getElementById("hora");
+        const h = document.getElementById("clock");
         if(h) h.innerText = new Date().toLocaleTimeString('pt-BR');
     }, 1000);
 
-    // TEMA
-    document.getElementById('checkbox')?.addEventListener('change', (e) => {
+    // 2. EFEITO MÁQUINA DE ESCREVER
+    const termText = "Estudante de ADS e Desenvolvedor Júnior. Apaixonado por programação, lógica e resolução de problemas reais. Buscando minha primeira oportunidade no mercado de tecnologia para aplicar meus conhecimentos, absorver novas stacks e gerar valor corporativo. READY_FOR_DEPLOYMENT...";
+    let i = 0;
+    function typeWriter() {
+        const el = document.getElementById("typewriter");
+        if (el && i < termText.length) {
+            el.innerHTML += termText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 30);
+        }
+    }
+    setTimeout(typeWriter, 1500);
+
+    // 3. CLIMA
+    buscarClima();
+
+    // 4. TEMA (Corrigido para o ID 'theme-toggle')
+    document.getElementById('theme-toggle')?.addEventListener('change', (e) => {
         document.documentElement.setAttribute('data-theme', e.target.checked ? 'light' : 'dark');
     });
 
-    // CLIMA
-    async function buscarClima() {
-        try {
-            const resp = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Sao Paulo&units=metric&lang=pt_br&appid=30fe6f22cbfbfb5805043da7e418d606`);
-            const d = await resp.json();
-            if (d.cod === 200) {
-                document.getElementById("temp").innerText = Math.round(d.main.temp) + "°C";
-                document.getElementById("clima-icone").src = `https://openweathermap.org/img/wn/${d.weather[0].icon}@4x.png`;
-            }
-        } catch (e) { console.error("API Clima:", e); }
-    }
-    buscarClima();
+    // 5. DRAG & DROP INICIALIZAÇÃO
+    const wWeather = document.querySelector('.widget-weather');
+    const wStatus = document.querySelector('.widget-status');
+    const wModal = document.querySelector('.modal-content');
+    if (wWeather) tornarArrastavel(wWeather);
+    if (wStatus) tornarArrastavel(wStatus);
+    if (wModal) tornarArrastavel(wModal);
 
-    // REMOVER LOADER
+    // 6. REMOVER LOADER
     setTimeout(() => { 
-        document.getElementById('loader-seguranca').style.display = 'none'; 
+        const loader = document.getElementById('loader-seguranca');
+        if(loader) loader.style.display = 'none'; 
     }, 1000);
-
-    // LÓGICA DO MODAL COM ÁUDIO
-    const overlay = document.getElementById('project-overlay');
-    const detailsDiv = document.getElementById('project-details');
-
-    document.querySelectorAll('.card-mini').forEach(card => {
-        card.addEventListener('click', () => {
-            playTechBeep('open'); // Som
-            
-            const id = card.getAttribute('data-projeto');
-            const info = dadosProjetos[id];
-            
-            if (info) {
-                detailsDiv.innerHTML = `
-                    <p style="color:var(--clima-color); font-family:monospace; margin-bottom:15px; font-size:0.9rem;">> MODULE_ID: ${id} | STATUS: ${info.status}</p>
-                    <h2 style="font-size:3.5rem; color:var(--text-h1); line-height:1; margin-bottom:20px;">${info.titulo}</h2>
-                    <p style="font-size:1.1rem; color:var(--text-p); line-height:1.6; margin-bottom:30px;">${info.descricao}</p>
-                    <div class="tags">
-                        ${info.tech.split(',').map(t => `<span style="background:rgba(56,189,248,0.1); color:var(--clima-color); padding:8px 15px; border-radius:8px; display:inline-block; margin:4px; font-weight:bold;">${t.trim()}</span>`).join('')}
-                    </div>
-                `;
-                overlay.classList.remove('overlay-hidden');
-            }
-        });
-    });
 });
 
-function fecharProjeto() {
-    playTechBeep('close'); // Som
-    document.getElementById('project-overlay').classList.add('overlay-hidden');
+// ================= FUNÇÕES AUXILIARES =================
+
+async function buscarClima() {
+    try {
+        const resp = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Sao Paulo&units=metric&lang=pt_br&appid=30fe6f22cbfbfb5805043da7e418d606`);
+        const d = await resp.json();
+        if (d.cod === 200) {
+            const t = document.getElementById("temp");
+            const ic = document.getElementById("clima-icone");
+            if(t) t.innerText = Math.round(d.main.temp) + "°C";
+            if(ic) ic.src = `https://openweathermap.org/img/wn/${d.weather[0].icon}@4x.png`;
+        }
+    } catch (e) { console.error("API Clima:", e); }
 }
-// ================= SISTEMA DE DRAG & DROP (ALTA PERFORMANCE) =================
+
+function abrirProjeto(id) {
+    const overlay = document.getElementById('project-overlay');
+    const detailsDiv = document.getElementById('project-details');
+    const info = dadosProjetos[id];
+
+    if (info && overlay && detailsDiv) {
+        playTechBeep('open');
+        detailsDiv.innerHTML = `
+            <p style="color:var(--clima-color); font-family:monospace; margin-bottom:15px; font-size:0.9rem;">> MODULE_ID: ${id} | STATUS: ${info.status}</p>
+            <h2 class="modal-title-adjust" style="color:var(--text-h1); line-height:1.2; margin-bottom:20px;">${info.titulo}</h2>
+            <p style="font-size:1.1rem; color:var(--text-p); line-height:1.6; margin-bottom:30px;">${info.descricao}</p>
+            <div class="tags">
+                ${info.tech.split(',').map(t => `<span style="background:rgba(56,189,248,0.1); color:var(--clima-color); padding:8px 15px; border-radius:8px; display:inline-block; margin:4px; font-weight:bold; border:1px solid rgba(56,189,248,0.2);">${t.trim()}</span>`).join('')}
+            </div>
+        `;
+        overlay.style.display = 'flex';
+    }
+}
+
+function fecharProjeto() {
+    const overlay = document.getElementById('project-overlay');
+    if (overlay) {
+        playTechBeep('close');
+        overlay.style.display = 'none';
+    }
+}
+
+// ================= DRAG & DROP =================
 function tornarArrastavel(elemento) {
     if (!elemento) return;
-
     let offsetX = 0, offsetY = 0;
-
-    // Estilo visual inicial (mãozinha aberta)
     elemento.style.cursor = "grab";
 
-    elemento.addEventListener('mousedown', iniciarArraste);
-
-    function iniciarArraste(e) {
-        // Ignora se o usuário clicou em um botão ou link dentro do painel
+    elemento.addEventListener('mousedown', (e) => {
+        if (window.innerWidth < 950) return; // Desativa no mobile
         if(e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
         
         e.preventDefault();
-        
-        // Muda o cursor para "agarrando" (mãozinha fechada)
         elemento.style.cursor = "grabbing";
-        
-        // Traz a janela para a frente de tudo
         elemento.style.zIndex = 99999;
 
-        // Calcula a posição exata de onde o mouse pegou o elemento
         const rect = elemento.getBoundingClientRect();
         offsetX = e.clientX - rect.left;
         offsetY = e.clientY - rect.top;
 
-        // Quebra as âncoras do CSS original para liberar o movimento
         elemento.style.right = 'auto';
         elemento.style.bottom = 'auto';
-        elemento.style.transform = 'none'; // Remove efeitos de hover que atrapalham
-        elemento.style.margin = '0'; 
-        
-        // Garante que o elemento flutue livremente em relação à tela do monitor
         elemento.style.position = 'fixed';
-        
-        // Seta a posição inicial imediatamente para não dar "pulo"
         elemento.style.left = rect.left + 'px';
         elemento.style.top = rect.top + 'px';
 
-        document.addEventListener('mousemove', moverElemento);
-        document.addEventListener('mouseup', pararArrastar);
-    }
+        const mover = (e) => {
+            elemento.style.left = (e.clientX - offsetX) + 'px';
+            elemento.style.top = (e.clientY - offsetY) + 'px';
+        };
 
-    function moverElemento(e) {
-        e.preventDefault();
-        // A mágica da fluidez: atualiza instantaneamente colado no mouse
-        elemento.style.left = (e.clientX - offsetX) + 'px';
-        elemento.style.top = (e.clientY - offsetY) + 'px';
-    }
+        const parar = () => {
+            elemento.style.cursor = "grab";
+            document.removeEventListener('mousemove', mover);
+            document.removeEventListener('mouseup', parar);
+        };
 
-    function pararArrastar() {
-        elemento.style.cursor = "grab";
-        document.removeEventListener('mousemove', moverElemento);
-        document.removeEventListener('mouseup', pararArrastar);
-    }
+        document.addEventListener('mousemove', mover);
+        document.addEventListener('mouseup', parar);
+    });
 }
-
-// INICIALIZA O DRAG & DROP
-document.addEventListener('DOMContentLoaded', () => {
-    // Adiciona o sistema de arrastar nos widgets e na janela modal
-    const wWeather = document.querySelector('.widget-weather');
-    const wStatus = document.querySelector('.widget-status');
-    const wModal = document.querySelector('.modal-content');
-    
-    if (wWeather) tornarArrastavel(wWeather);
-    if (wStatus) tornarArrastavel(wStatus);
-    if (wModal) tornarArrastavel(wModal);
-});
