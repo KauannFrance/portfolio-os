@@ -18,29 +18,71 @@ const dadosProjetos = {
     "16": { titulo: "Cyber Dashboard", descricao: "Interface de portfólio focada em alta performance visual e responsividade.", tech: "HTML, CSS, JS", status: "STABLE" }
 };
 
-// ================= ÁUDIO (BIP SINTÉTICO) =================
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-function playTechBeep(tipo) {
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    
-    if (tipo === 'open') {
-        oscillator.type = 'square';
-        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.1);
-    } else if (tipo === 'close') {
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(400, audioCtx.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.1);
+// ================= ÁUDIO (BIP SINTÉTICO MELHORADO) =================
+let audioCtx = null; // Inicializa como nulo
+
+function iniciarAudioContext() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
-    gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    oscillator.start();
-    oscillator.stop(audioCtx.currentTime + 0.1);
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
 }
+
+function playTechBeep(tipo) {
+    try {
+        iniciarAudioContext(); // Garante que o contexto está ativo
+        
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        if (tipo === 'open') {
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.1);
+        } else if (tipo === 'close') {
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(400, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.1);
+        }
+
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime); // Aumentei um pouco o volume (0.1)
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.1);
+    } catch (e) {
+        console.error("Erro ao reproduzir áudio:", e);
+    }
+}
+
+// ATUALIZE A FUNÇÃO abrirProjeto para incluir o desbloqueio
+function abrirProjeto(id) {
+    iniciarAudioContext(); // Desbloqueia o áudio no clique do usuário
+    
+    const overlay = document.getElementById('project-overlay');
+    const detailsDiv = document.getElementById('project-details');
+    const info = dadosProjetos[id];
+
+    if (info && overlay && detailsDiv) {
+        playTechBeep('open'); // Toca o som de abertura
+        
+        detailsDiv.innerHTML = `
+            <p style="color:var(--clima-color); font-family:monospace; margin-bottom:15px; font-size:0.9rem;">> MODULE_ID: ${id} | STATUS: ${info.status}</p>
+            <h2 class="modal-title-adjust" style="color:var(--text-h1); line-height:1.2; margin-bottom:20px;">${info.titulo}</h2>
+            <p style="font-size:1.1rem; color:var(--text-p); line-height:1.6; margin-bottom:30px;">${info.descricao}</p>
+            <div class="tags">
+                ${info.tech.split(',').map(t => `<span style="background:rgba(56,189,248,0.1); color:var(--clima-color); padding:8px 15px; border-radius:8px; display:inline-block; margin:4px; font-weight:bold; border:1px solid rgba(56,189,248,0.2);">${t.trim()}</span>`).join('')}
+            </div>
+        `;
+        overlay.style.display = 'flex';
+    }
+}
+
 
 // ================= EVENTOS PRINCIPAIS =================
 document.addEventListener('DOMContentLoaded', () => {
