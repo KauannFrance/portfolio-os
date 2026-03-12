@@ -311,3 +311,27 @@ input:checked + .slider:before { transform: translateX(20px); }
     .modal-content { width: 90% !important; margin: auto !important; position: static !important; padding-top: 50px !important; box-sizing: border-box !important; }
     .close-btn { position: absolute !important; top: 10px !important; right: 10px !important; background: rgba(0,0,0,0.5) !important; padding: 5px 10px !important; border-radius: 5px !important; font-size: 0.8rem !important; }
 }
+/* ================= DETALHES DOS LOGS (EXPERIÊNCIA) ================= */
+.log-details {
+    list-style: none;
+    margin-top: 10px;
+    padding-left: 18px;
+    font-size: 0.85rem;
+    color: var(--text-p);
+    line-height: 1.5;
+}
+
+.log-details li {
+    margin-bottom: 6px;
+    position: relative;
+}
+
+/* Cria uma setinha hacker no lugar da bolinha da lista */
+.log-details li::before {
+    content: ">";
+    color: var(--clima-color);
+    position: absolute;
+    left: -15px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+}
