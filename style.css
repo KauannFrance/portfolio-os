@@ -191,23 +191,40 @@ input:checked + .slider:before { transform: translateX(20px); }
     .fixed-ui { padding: 15px; background: var(--bg-body); z-index: 9999; border-bottom: 1px solid var(--glass-border); position: fixed !important; height: 70px; }
     .header-clock, .page-indicator, .weather-title { display: none !important; }
 
-    /* Clima (Pílula no Topo) */
+    /* CLIMA MINI NO CANTO SUPERIOR (Mobile) */
     .widget-weather {
-        position: fixed !important;
-        top: 15px !important;
-        right: 70px !important;
+        position: absolute !important; /* Ele volta a flutuar */
+        top: 18px !important;        /* Alinhado com o título KAUAN_DEV_OS */
+        right: 65px !important;      /* Dá espaço para o botão de Switch */
         width: auto !important;
-        height: 40px !important;
-        padding: 5px 12px !important;
+        height: 32px !important;
+        padding: 0 10px !important;
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
-        justify-content: center !important;
         gap: 5px !important;
-        border-radius: 20px !important;
-        z-index: 10001 !important;
-        background: var(--glass) !important;
+        background: rgba(56, 189, 248, 0.1) !important; /* Um azul bem sutil */
+        border: 1px solid var(--glass-border) !important;
+        border-radius: 10px !important;
+        z-index: 10001 !important; /* Garante que fica acima de tudo */
+        margin: 0 !important;
     }
+
+    /* Ajuste dos itens internos do clima */
+    #clima-icone { 
+        width: 18px !important; 
+        height: 18px !important; 
+        margin: 0 !important;
+    }
+    
+    #temp { 
+        font-size: 0.85rem !important; 
+        font-weight: 800 !important;
+        color: var(--text-h1) !important;
+        margin: 0 !important;
+    }
+
+    .weather-title { display: none !important; } /* Esconde o texto longo */
     #clima-icone { width: 22px !important; margin: 0 !important; }
     #temp { font-size: 0.9rem !important; margin: 0 !important; line-height: 1 !important; }
 
