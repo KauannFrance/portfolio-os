@@ -75,14 +75,6 @@ body {
 .id-status { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-top: 10px; border-top: 1px solid var(--glass-border); padding-top: 15px; }
 .pulse-dot { display: inline-block; width: 8px; height: 8px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 10px #00ff88; animation: pulse 1.5s infinite; margin-right: 5px; }
 
-/* REDE / PORTAS */
-.network-card h3 { font-size: 0.8rem; letter-spacing: 2px; color: var(--clima-color); margin-bottom: 15px; }
-.port-list { list-style: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 2; }
-.port-num { color: var(--text-p); }
-.port-status.open { color: #00ff88; margin: 0 10px; }
-.port-link { color: var(--text-h1); text-decoration: none; font-weight: bold; transition: 0.3s; }
-.port-link:hover { color: var(--clima-color); text-shadow: 0 0 10px var(--clima-color); }
-
 /* TERMINAL */
 .terminal-card { 
     background: var(--term-bg) !important; 
@@ -112,6 +104,17 @@ body {
 .tech-item img { width: 32px; height: 32px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.3)); display: block; margin: 0 auto; }
 .icon-white { filter: invert(1) brightness(2) !important; }
 .tech-item span { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-p); font-weight: bold; text-align: center; }
+
+/* ================= PAINEL DE CONTATOS (NOVO) ================= */
+.contact-card h3 { font-size: 0.8rem; letter-spacing: 2px; color: var(--clima-color); margin-bottom: 20px; }
+.contact-grid { display: flex; flex-direction: column; gap: 15px; }
+.contact-btn { display: flex; align-items: center; gap: 15px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 20px; border-radius: 12px; text-decoration: none; color: var(--text-h1); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: bold; transition: all 0.3s ease; }
+.contact-btn img { width: 24px; height: 24px; transition: 0.3s; }
+.email-icon { font-size: 1.5rem; color: #00ff88; width: 24px; text-align: center; }
+.contact-btn:hover { background: rgba(56, 189, 248, 0.1); border-color: var(--clima-color); transform: translateX(10px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+.contact-btn:hover img { filter: drop-shadow(0 0 8px var(--clima-color)); }
+.contact-btn:hover .email-icon { text-shadow: 0 0 8px #00ff88; }
+
 
 /* ================= WIDGETS FLUTUANTES (DESKTOP) ================= */
 
