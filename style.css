@@ -191,24 +191,46 @@ input:checked + .slider:before { transform: translateX(20px); }
     .fixed-ui { padding: 15px; background: var(--bg-body); z-index: 9999; border-bottom: 1px solid var(--glass-border); position: fixed !important; height: 70px; }
     .header-clock, .page-indicator, .weather-title { display: none !important; }
 
-    /* CLIMA MINI NO CANTO SUPERIOR (Mobile) */
+    /* FORÇANDO O CLIMA PARA O TOPO NO MOBILE */
     .widget-weather {
-        position: absolute !important; /* Ele volta a flutuar */
-        top: 18px !important;        /* Alinhado com o título KAUAN_DEV_OS */
-        right: 65px !important;      /* Dá espaço para o botão de Switch */
+        position: absolute !important;
+        top: 20px !important;        /* Alinha com o texto KAUAN_DEV_OS */
+        right: 60px !important;      /* Fica à esquerda do botão de switch */
+        left: auto !important;       /* Limpa qualquer centralização anterior */
+        bottom: auto !important;     /* Limpa qualquer trava de baixo */
+        
         width: auto !important;
-        height: 32px !important;
-        padding: 0 10px !important;
+        height: 35px !important;
+        padding: 0 12px !important;
+        
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
-        gap: 5px !important;
-        background: rgba(56, 189, 248, 0.1) !important; /* Um azul bem sutil */
+        gap: 6px !important;
+        
+        background: rgba(15, 23, 42, 0.8) !important;
         border: 1px solid var(--glass-border) !important;
-        border-radius: 10px !important;
-        z-index: 10001 !important; /* Garante que fica acima de tudo */
+        border-radius: 12px !important;
+        z-index: 10002 !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    /* Ajuste fino dos elementos internos */
+    #clima-icone { 
+        width: 20px !important; 
+        height: 20px !important; 
         margin: 0 !important;
     }
+    
+    #temp { 
+        font-size: 0.9rem !important; 
+        font-weight: 700 !important;
+        color: var(--clima-color) !important;
+        margin: 0 !important;
+    }
+
+    .weather-title { display: none !important; }
 
     /* Ajuste dos itens internos do clima */
     #clima-icone { 
