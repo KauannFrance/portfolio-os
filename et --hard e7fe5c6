@@ -1,0 +1,50 @@
+[33mea72896[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: commit: fix: final dashboard layout with anchored grid and premium styles
+[33m82e3fb8[m HEAD@{1}: commit: fix: anchor weather widget to grid and fix dashboard layout
+[33m04561df[m HEAD@{2}: commit: style: full dashboard premium layout
+[33m6e63e3d[m HEAD@{3}: commit: style: full dashboard refactor and grid alignment
+[33m484494d[m HEAD@{4}: commit: style: final dashboard layout integration on pc
+[33m7a1ea15[m HEAD@{5}: commit: design: layout 3-cols top and wide terminal bottom (PC centered)
+[33m8b1963e[m HEAD@{6}: commit: design: layout dashboard matching sketch (3 columns + wide terminal)
+[33mfc4f7e6[m HEAD@{7}: commit: design: expand PC layout to fill screen space
+[33me7fe5c6[m HEAD@{8}: commit: feat: update work experience logs with detailed descriptions
+[33md195bcd[m HEAD@{9}: commit: fix: remove duplicate terminal and tech stack cards
+[33m43eb0da[m HEAD@{10}: commit: fix: remove duplicate terminal and tech stack cards
+[33m48c2dde[m HEAD@{11}: commit: fix: remove duplicate terminal and tech stack cards
+[33m7e3e64a[m HEAD@{12}: commit: style: updated css with mini contacts and removed large buttons
+[33m5e9bd83[m HEAD@{13}: commit: feat: upgrade to secure comms panel and lock mobile view
+[33m7310855[m HEAD@{14}: commit: feat: move tech stack above network ports
+[33m5d91726[m HEAD@{15}: commit: feat: move tech stack above network ports
+[33mb4d17e7[m HEAD@{16}: commit: fix: lock horizontal scroll and add box-sizing for mobile
+[33m7cc54e2[m HEAD@{17}: commit: fix: weather widget perfectly positioned as a pill on mobile
+[33m3f7d9ec[m HEAD@{18}: commit: style: force weather widget to top right pill on mobile
+[33m1a49727[m HEAD@{19}: commit: style: final safe mobile adjustments and weather placement
+[33m9fd9775[m HEAD@{20}: commit: mobile: fix weather widget layer and position
+[33m3f323db[m HEAD@{21}: commit: fix: weather widget forced to top corner on mobile
+[33m3a184a0[m HEAD@{22}: commit: mobile: move weather widget to top corner
+[33m8c46e95[m HEAD@{23}: commit: fix: force cache clear with v=999
+[33m093cc43[m HEAD@{24}: commit: refactor: clean up css and fix grid overlaps
+[33m3707c7e[m HEAD@{25}: commit: fix: nuclear mobile reset with static positioning
+[33m2a13bca[m HEAD@{26}: commit: fix: emergency mobile layout reset
+[33ma708973[m HEAD@{27}: commit: fix: total mobile layout reboot
+[33mc33686f[m HEAD@{28}: commit: style: final mobile polish and terminal fix
+[33mbde51f4[m HEAD@{29}: commit: fix: tech icons size and css syntax
+[33mb964c54[m HEAD@{30}: commit: feat: replace skill bars with tech icons grid
+[33m9f88fb8[m HEAD@{31}: commit: fix: reorder bio and fix div nesting
+[33m1fb3727[m HEAD@{32}: commit: fix: remove duplicate terminal and fix bento nesting
+[33mba18a20[m HEAD@{33}: commit: fix: remove duplicated terminal and fix bento order
+[33mc08640a[m HEAD@{34}: commit: style: fix bento order - terminal above skills
+[33m1773f64[m HEAD@{35}: commit: layout: reorder bento grid - mission before skills
+[33m4628ded[m HEAD@{36}: commit: fix: web audio context resume on click
+[33m9f67db8[m HEAD@{37}: commit: fix: total system logic sync
+[33mae5c6ea[m HEAD@{38}: commit: fix: mobile layout, climate widget and project interaction
+[33m11c410b[m HEAD@{39}: commit: fix: botao de fechar no mobile
+[33md398154[m HEAD@{40}: reset: moving to d398154
+[33mff90965[m HEAD@{41}: commit: style: layout bento centralizado e mobile fix
+[33m264f9e3[m HEAD@{42}: commit: style: final alignment fix
+[33m9533faa[m HEAD@{43}: commit: fix: sync html with consolidated css
+[33md0d77ea[m HEAD@{44}: commit: feat: complete system logic
+[33m42b6eda[m HEAD@{45}: commit: fix: modal depth and mobile visibility
+[33m4c2b163[m HEAD@{46}: commit: style: novo css otimizado e terminal no topo
+[33md015d5f[m HEAD@{47}: commit: ajuste mobile completo
+[33m276a254[m HEAD@{48}: commit: ajuste final modal mobile
+[33md398154[m HEAD@{49}: commit (initial): conectando vs code ao github
