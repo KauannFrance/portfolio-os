@@ -164,9 +164,26 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 /* ================= RESPONSIVIDADE (MOBILE & TABLETS) ================= */
 @media screen and (max-width: 950px) {
-    /* 1. Reset para liberar a rolagem natural */
-    body { overflow-y: auto !important; height: auto !important; display: block !important; }
-    .main-scroll-container { display: block !important; height: auto !important; overflow: visible !important; scroll-snap-type: none !important; }
+    /* ==================================================
+       TRAVA DE ROLAGEM HORIZONTAL (FIM DO ARRASTO)
+       ================================================== */
+    html, body { 
+        overflow-x: hidden !important; /* Corta tudo que vazar pros lados */
+        max-width: 100vw !important;   /* Trava a largura máxima na tela */
+        width: 100% !important;
+        overflow-y: auto !important; 
+        height: auto !important; 
+        display: block !important; 
+    }
+
+    .main-scroll-container { 
+        overflow-x: hidden !important; 
+        max-width: 100vw !important;
+        display: block !important; 
+        height: auto !important; 
+        overflow: visible !important; 
+        scroll-snap-type: none !important; 
+    }
 
     /* 2. Cabeçalho fixo e flexível */
     .fixed-ui { 
@@ -179,6 +196,8 @@ input:checked + .slider:before { transform: translateX(20px); }
         background: var(--bg-body) !important;
         border-bottom: 1px solid var(--glass-border) !important;
         z-index: 9999 !important;
+        width: 100% !important; /* Adicionado para garantir o alinhamento no lock */
+        box-sizing: border-box !important; /* Adicionado para evitar overflow do padding */
     }
     .header-brand { font-size: 0.8rem !important; }
     .header-clock, .page-indicator { display: none !important; }
@@ -213,25 +232,40 @@ input:checked + .slider:before { transform: translateX(20px); }
     #temp { font-size: 1rem !important; font-weight: bold !important; margin: 0 !important; line-height: 1 !important; color: var(--text-h1) !important;}
 
     /* 4. Alinhamento dos Cards (Fila Indiana Segura) */
-    .page-section { height: auto !important; min-height: 100vh !important; padding: 20px 15px !important; display: block !important; }
-    .bento-wrapper { width: 100% !important; margin: 0 !important; }
-    .bento-grid { display: flex !important; flex-direction: column !important; gap: 20px !important; width: 100% !important; }
+    .page-section { 
+        height: auto !important; 
+        min-height: 100vh !important; 
+        padding: 20px 15px !important; 
+        display: block !important; 
+        box-sizing: border-box !important; /* Evita que o padding alargue a tela */
+        width: 100% !important;
+    }
+    .bento-wrapper { width: 100% !important; margin: 0 !important; box-sizing: border-box !important; }
+    .bento-grid { display: flex !important; flex-direction: column !important; gap: 20px !important; width: 100% !important; box-sizing: border-box !important; }
     
-    .glass-panel:not(.widget-weather) { width: 100% !important; position: static !important; padding: 20px !important; margin-bottom: 0 !important; transform: none !important; }
+    .glass-panel:not(.widget-weather) { 
+        width: 100% !important; 
+        position: static !important; 
+        padding: 20px !important; 
+        margin-bottom: 0 !important; 
+        transform: none !important; 
+        box-sizing: border-box !important; /* Essencial para evitar scroll horizontal */
+    }
+    
     .terminal-card { grid-column: span 1 !important; }
     .term-body { font-size: 0.8rem !important; padding: 15px !important; }
 
     /* Grid Tech Mobile (3 colunas) */
-    .tech-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 15px !important; }
+    .tech-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 15px !important; width: 100% !important; }
     .tech-item img { width: 28px !important; height: 28px !important; }
 
     /* Status e Restante */
-    .widget-status { position: static !important; width: 100% !important; margin-top: 20px !important; text-align: left !important; transform: none !important; }
-    .repo-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+    .widget-status { position: static !important; width: 100% !important; margin-top: 20px !important; text-align: left !important; transform: none !important; box-sizing: border-box !important; }
+    .repo-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; width: 100% !important; }
     .card-mini h4 { font-size: 1.8rem !important; }
-    .logs-panel { width: 100% !important; }
+    .logs-panel { width: 100% !important; box-sizing: border-box !important; }
     
     /* Modal / Botão Fechar Mobile */
-    .modal-content { width: 90% !important; margin: auto !important; position: static !important; padding-top: 50px !important; }
+    .modal-content { width: 90% !important; margin: auto !important; position: static !important; padding-top: 50px !important; box-sizing: border-box !important; }
     .close-btn { position: absolute !important; top: 10px !important; right: 10px !important; background: rgba(0,0,0,0.5) !important; padding: 5px 10px !important; border-radius: 5px !important; font-size: 0.8rem !important; }
 }
