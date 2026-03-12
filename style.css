@@ -114,7 +114,49 @@ body {
 .tech-item span { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-p); font-weight: bold; text-align: center; }
 
 /* ================= WIDGETS FLUTUANTES (DESKTOP) ================= */
-.widget-weather { position: absolute; right: 60px; top: 100px; width: 220px; text-align: center; padding: 25px; }
+/* ==================================================
+       ABDUÇÃO DO CLIMA: Tira do meio e joga pro topo 
+       ================================================== */
+    .widget-weather {
+        position: fixed !important; /* Tira ele da fila e fixa na tela */
+        top: 15px !important;       /* Altura do cabeçalho */
+        right: 70px !important;     /* Espaço para o botão de Dark Mode não sobrepor */
+        left: auto !important;
+        bottom: auto !important;
+        
+        width: auto !important;
+        height: 35px !important;
+        padding: 0 12px !important;
+        margin: 0 !important;
+        
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 8px !important;
+        
+        background: rgba(15, 23, 42, 0.95) !important;
+        border: 1px solid var(--glass-border) !important;
+        border-radius: 20px !important;
+        z-index: 99999 !important; /* Garante que fica acima de TUDO */
+        transform: none !important;
+    }
+
+    /* Esconde o texto "SAO_PAULO_ZONE" para caber */
+    .weather-title { display: none !important; }
+
+    /* Encolhe o Ícone e o Texto da Temperatura */
+    #clima-icone { 
+        width: 22px !important; 
+        height: 22px !important; 
+        margin: 0 !important; 
+        filter: none !important;
+    }
+    #temp { 
+        font-size: 1rem !important; 
+        font-weight: bold !important; 
+        margin: 0 !important; 
+        line-height: 1 !important;
+    }
 .weather-title { font-size: 0.7rem; opacity: 0.6; letter-spacing: 2px; margin-bottom: 5px; }
 #temp { font-size: 3rem; font-weight: 800; color: var(--text-h1); line-height: 1; }
 #clima-icone { width: 70px; margin: 10px 0; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2)); }
