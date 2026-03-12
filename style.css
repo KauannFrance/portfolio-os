@@ -80,15 +80,24 @@ body {
 .port-link:hover { color: var(--clima-color); text-shadow: 0 0 10px var(--clima-color); }
 
 
-/* Módulo 4: Terminal - AJUSTADO */
 .terminal-card { 
     background: var(--term-bg) !important; 
     padding: 0 !important; 
     overflow: hidden; 
     display: flex; 
     flex-direction: column; 
-    grid-column: span 2; /* Faz ele ocupar a largura total do bento */
-    margin-bottom: 10px; /* Dá um respiro para os módulos de baixo */
+    grid-column: span 2; 
+    width: 100% !important; /* Garante que ele não passe da borda */
+    margin-top: 10px;
+}
+
+.term-body { 
+    padding: 20px !important; /* Diminuí um pouco o padding para caber melhor */
+    font-family: 'JetBrains Mono', monospace; 
+    font-size: 0.9rem !important; 
+    line-height: 1.5; 
+    color: #00ff88; 
+    word-wrap: break-word; /* Faz o texto quebrar linha se for muito longo */
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
@@ -151,41 +160,36 @@ input:checked + .slider:before { transform: translateX(20px); }
 #loader-seguranca { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-body) !important; z-index: 99999; display: flex; align-items: center; justify-content: center; }
 .loader-content p { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; color: var(--clima-color); letter-spacing: 4px; animation: pulse 1s infinite; }
 
-/* ================= RESPONSIVIDADE (MOBILE & TABLETS) ================= */
 @media screen and (max-width: 950px) {
-    /* Liberta o ecrã para rolar normalmente com o dedo */
-    body { overflow-y: auto !important; overflow-x: hidden !important; height: auto !important; }
-    .main-scroll-container { scroll-snap-type: none !important; overflow-y: visible !important; height: auto !important; }
+    /* Widget Clima versão 'Pílula' no Mobile */
+    .widget-weather {
+        position: absolute !important;
+        top: 80px !important; /* Logo abaixo do cabeçalho */
+        right: 15px !important;
+        width: auto !important;
+        height: 40px !important;
+        padding: 5px 15px !important;
+        display: flex !important;
+        flex-direction: row !important; /* Ícone do lado do texto */
+        align-items: center !important;
+        gap: 8px !important;
+        border-radius: 50px !important; /* Formato de pílula */
+        background: rgba(15, 23, 42, 0.9) !important;
+    }
+
+    .weather-title { display: none !important; } /* Esconde o texto 'SAO_PAULO_ZONE' */
     
-    /* Ajusta as secções para não esmagarem o conteúdo */
-    .page-section { height: auto !important; min-height: 100vh; padding: 100px 15px 50px 15px !important; flex-direction: column; justify-content: flex-start; }
-    
-    /* Cabeçalho fixo perfeito para telemóvel */
-    .fixed-ui { padding: 15px; background: var(--bg-body); z-index: 9999; border-bottom: 1px solid var(--glass-border); }
-    .header-brand { font-size: 0.75rem; letter-spacing: 1px; }
-    .header-clock { display: none !important; } /* Esconde o relógio */
-    
-    /* Esconde as bolinhas laterais (A prova definitiva de que o CSS atualizou) */
-    .page-indicator { display: none !important; }
-    
-    /* Empilha o Bento Grid (As janelas) */
-    .bento-wrapper { width: 100% !important; margin-right: 0 !important; }
-    .bento-grid { display: flex !important; flex-direction: column !important; width: 100%; gap: 15px; }
-    
-    /* Ajusta as margens de todas as janelas de vidro */
-    .glass-panel { padding: 20px !important; width: 100% !important; box-sizing: border-box; }
-    .id-header { flex-direction: column; text-align: center; }
-    
-    /* TRAVA O CLIMA E O STATUS (Eles não vão flutuar mais) */
-    .widget-weather, .widget-status { position: static !important; transform: none !important; margin-top: 0; }
-    
-    /* Grade de Projetos: 2 colunas no telemóvel */
-    .repo-grid { grid-template-columns: 1fr 1fr !important; width: 100%; gap: 10px; }
-    .card-mini h4 { font-size: 1.8rem; }
-    
-    .logs-panel { width: 100%; }
-    .modal-content { width: 90% !important; margin: auto; position: static !important; }
+    #clima-icone { 
+        width: 25px !important; 
+        margin: 0 !important; 
+    }
+
+    #temp { 
+        font-size: 1rem !important; 
+        margin: 0 !important; 
+    }
 }
+
 /* AJUSTE APENAS PARA O BOTÃO DE FECHAR NO CELULAR */
 @media screen and (max-width: 950px) {
     .close-btn {
