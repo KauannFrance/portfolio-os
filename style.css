@@ -191,74 +191,96 @@ input:checked + .slider:before { transform: translateX(20px); }
 }
 
 /* AJUSTE APENAS PARA O BOTÃO DE FECHAR NO CELULAR */
+/* ================= RESPONSIVIDADE MOBILE REVISADA ================= */
 @media screen and (max-width: 950px) {
-    .close-btn {
-        position: absolute !important;
-        top: 10px !important;
-        right: 10px !important;
-        background: rgba(0, 0, 0, 0.5) !important;
-        padding: 5px 10px !important;
-        border-radius: 5px !important;
-        z-index: 9999 !important;
-        font-size: 0.8rem !important;
+    body { 
+        overflow-y: auto !important; 
+        height: auto !important; 
+        background-attachment: scroll !important;
     }
 
-    .modal-content {
-        padding-top: 50px !important; /* Abre espaço pro botão não ficar em cima do texto */
-        position: relative !important;
+    .main-scroll-container { 
+        scroll-snap-type: none !important; 
+        overflow-y: visible !important; 
+        height: auto !important; 
     }
-}
-/* ================= GRID DE TECNOLOGIAS ================= */
-.tech-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 20px !important;
-    margin-top: 15px !important;
-    width: 100% !important;
-}
 
-.tech-item {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 8px !important;
-    transition: transform 0.3s ease !important;
-}
-
-.tech-item:hover {
-    transform: translateY(-5px) !important;
-}
-
-.tech-item img {
-    width: 32px !important;
-    height: 32px !important;
-    object-fit: contain !important;
-    margin: 0 auto !important;
-    display: block !important;
-    filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.3)) !important;
-}
-
-.icon-white {
-    filter: invert(1) brightness(2) !important;
-}
-
-.tech-item span {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 0.6rem !important;
-    color: var(--text-p) !important;
-    font-weight: bold !important;
-    text-align: center !important;
-}
-
-/* Ajuste Responsivo para Tech Grid */
-@media screen and (max-width: 950px) {
-    .tech-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 15px !important;
+    /* 1. HEADER: Limpa a barra do topo */
+    .fixed-ui { 
+        position: fixed !important;
+        padding: 15px !important; 
+        background: rgba(8, 10, 15, 0.95) !important; 
+        backdrop-filter: blur(10px);
+        height: 70px !important;
+        border-bottom: 1px solid var(--glass-border);
     }
     
-    .tech-item img {
-        width: 28px !important;
-        height: 28px !important;
+    .header-brand { font-size: 0.7rem !important; letter-spacing: 1px !important; }
+    
+    /* ESCONDE O RELÓGIO E AS BOLINHAS LATERAIS NO MOBILE (Ocupam muito espaço) */
+    .header-clock, .page-indicator { display: none !important; }
+
+    /* 2. CLIMA: Versão Mini Pílula no topo */
+    .widget-weather {
+        position: absolute !important;
+        top: 15px !important; /* Dentro da barra fixa */
+        right: 65px !important; /* Do lado do switch de tema */
+        width: auto !important;
+        height: 35px !important;
+        padding: 0 10px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 5px !important;
+        background: var(--glass) !important;
+        border-radius: 20px !important;
+        z-index: 10001 !important;
+    }
+    .weather-title { display: none !important; }
+    #clima-icone { width: 20px !important; margin: 0 !important; }
+    #temp { font-size: 0.9rem !important; margin: 0 !important; }
+
+    /* 3. SEÇÃO PRINCIPAL */
+    .page-section { 
+        height: auto !important; 
+        min-height: 100vh; 
+        padding: 100px 15px 40px 15px !important; 
+        display: block !important; /* Empilha tudo */
+    }
+
+    /* 4. BENTO GRID: Estica os cards */
+    .bento-wrapper { width: 100% !important; margin: 0 !important; }
+    
+    .bento-grid { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        gap: 15px !important; 
+    }
+
+    .glass-panel { padding: 20px !important; width: 100% !important; }
+
+    /* 5. TERMINAL E SKILLS */
+    .terminal-card, .skills-card, .network-card { 
+        grid-column: span 1 !important; 
+        width: 100% !important;
+    }
+    
+    .term-body { font-size: 0.8rem !important; padding: 15px !important; }
+    
+    /* Grid de Techs: 3 por linha no mobile */
+    .tech-grid { 
+        grid-template-columns: repeat(3, 1fr) !important; 
+        gap: 15px !important; 
+    }
+
+    /* 6. STATUS E WIDGETS LATERAIS */
+    .widget-status { 
+        position: relative !important; 
+        right: auto !important; 
+        bottom: auto !important; 
+        width: 100% !important; 
+        text-align: left !important; 
+        margin-top: 15px !important;
+        padding: 20px !important;
     }
 }
