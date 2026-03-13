@@ -1,21 +1,23 @@
 // ================= BANCO DE DADOS DE PROJETOS =================
-const dadosProjetos = {
-    "01": { titulo: "Neural File Scanner", descricao: "Análise de integridade SHA-256 para detecção de alterações não autorizadas em arquivos críticos.", tech: "Python, Hashlib", status: "SECURE" },
-    "02": { titulo: "Kernel Keylogger", descricao: "Monitoramento de periféricos de entrada focado em testes de invasão física e auditoria.", tech: "Python, Pynput", status: "ACTIVE" },
-    "03": { titulo: "Weather OS Intel", descricao: "Dashboard meteorológico com consumo de API e interface Glassmorphism.", tech: "JS, Fetch API", status: "ONLINE" },
-    "04": { titulo: "Data Scraper Pro", descricao: "Extração de dados automatizada em larga escala com Selenium.", tech: "Python, Selenium", status: "ACTIVE" },
-    "05": { titulo: "RSA Encryptor", descricao: "Implementação de criptografia assimétrica para proteção de mensagens.", tech: "Python, Math", status: "ENCRYPTED" },
-    "06": { titulo: "Network Mapper", descricao: "Varredura de portas TCP/UDP e identificação de serviços na rede.", tech: "Python, Sockets", status: "SECURE" },
-    "07": { titulo: "SQLi Simulator", descricao: "Ambiente de teste para exploração e mitigação de injeções SQL.", tech: "SQL, PHP", status: "AUDIT" },
-    "08": { titulo: "Brute Force Tester", descricao: "Simulador de ataque de dicionário para checagem de políticas de senhas.", tech: "Python, Itertools", status: "TESTING" },
-    "09": { titulo: "Wi-Fi Analyzer", descricao: "Monitoramento de pacotes wireless e força de sinal.", tech: "Python, Scapy", status: "SCANNING" },
-    "10": { titulo: "Malware Sandbox", descricao: "Ambiente isolado para execução de binários suspeitos.", tech: "VM, Python", status: "ISOLATED" },
-    "11": { titulo: "Firewall Logic", descricao: "Filtragem de pacotes baseada em IP e protocolos de rede.", tech: "Python", status: "BLOCKING" },
-    "12": { titulo: "Phishing Lab", descricao: "Simulação de engenharia social para treinamento corporativo.", tech: "HTML, CSS", status: "EDUCATIONAL" },
-    "13": { titulo: "Hash Cracker", descricao: "Reversão de hashes usando comparação com rainbow tables.", tech: "Python, Hashlib", status: "ACTIVE" },
-    "14": { titulo: "Proxy Intermediary", descricao: "Mascaramento de IP e redirecionamento de tráfego HTTP.", tech: "Python, Sockets", status: "SECURE" },
-    "15": { titulo: "OSINT Investigator", descricao: "Coleta de dados públicos em fontes abertas para inteligência.", tech: "Python, APIs", status: "ACTIVE" },
-    "16": { titulo: "Cyber Dashboard", descricao: "Interface de portfólio focada em alta performance visual e responsividade.", tech: "HTML, CSS, JS", status: "STABLE" }
+const projetos = {
+    "01": { titulo: "Scanner", descricao: "Scanner de vulnerabilidades e análise de portas.", tech: "Python", status: "ACTIVE" },
+    "02": { titulo: "Keylogger", descricao: "Estudo de captura de eventos de teclado para fins educacionais.", tech: "Python", status: "ACTIVE" },
+    "03": { titulo: "Weather", descricao: "Dashboard climático integrado via API.", tech: "JS, API", status: "ACTIVE" },
+    
+    // Módulos em Desenvolvimento
+    "04": { titulo: "[IN DEVELOPMENT] Data Scraper", descricao: "Módulo de extração automatizada. Deploy em breve.", tech: "Python, Selenium", status: "DEVELOPING" },
+    "05": { titulo: "[IN DEVELOPMENT] RSA Encryptor", descricao: "Criptografia assimétrica em fase de implementação matemática.", tech: "Python", status: "LOCKED" },
+    "06": { titulo: "[IN DEVELOPMENT] Network Mapper", descricao: "Mapeamento de serviços de rede sob auditoria interna.", tech: "Python, Sockets", status: "SCANNING" },
+    "07": { titulo: "[IN DEVELOPMENT] SQLi Simulator", descricao: "Ambiente de laboratório para testes de injeção SQL.", tech: "SQL, PHP", status: "UNDER_AUDIT" },
+    "08": { titulo: "[IN DEVELOPMENT] Brute Force", descricao: "Testador de políticas de senhas em fase de testes alpha.", tech: "Python", status: "TESTING" },
+    "09": { titulo: "[IN DEVELOPMENT] Wi-Fi Analyzer", descricao: "Análise de espectro wireless em desenvolvimento.", tech: "Python, Scapy", status: "ENCRYPTED" },
+    "10": { titulo: "[IN DEVELOPMENT] Malware Sandbox", descricao: "Arquitetura de ambiente isolado (VM) em configuração.", tech: "Virtualization", status: "LOCKED" },
+    "11": { titulo: "[IN DEVELOPMENT] Firewall Logic", descricao: "Regras de filtragem de pacotes em fase de script.", tech: "Python", status: "DEVELOPING" },
+    "12": { titulo: "[IN DEVELOPMENT] Phishing Lab", descricao: "Simulador de engenharia social para treinamento de usuários.", tech: "HTML/CSS", status: "EDUCATIONAL" },
+    "13": { titulo: "[IN DEVELOPMENT] Hash Cracker", descricao: "Algoritmos de comparação de hash em otimização.", tech: "Python, Hashlib", status: "DEVELOPING" },
+    "14": { titulo: "[IN DEVELOPMENT] Proxy Intermediary", descricao: "Redirecionamento de tráfego seguro em desenvolvimento.", tech: "Python", status: "LOCKED" },
+    "15": { titulo: "[IN DEVELOPMENT] OSINT Investigator", descricao: "Ferramenta de coleta de dados públicos via APIs.", tech: "Python, APIs", status: "SCANNING" },
+    "16": { titulo: "Portfolio OS", descricao: "Este sistema que você está navegando agora.", tech: "HTML, CSS, JS", status: "STABLE" }
 };
 
 // ================= ÁUDIO (BIP SINTÉTICO MELHORADO) =================
@@ -32,7 +34,7 @@ function iniciarAudioContext() {
 
 function playTechBeep(tipo) {
     try {
-        iniciarAudioContext(); // Garante que o contexto está ativo
+        iniciarAudioContext(); 
         
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
@@ -60,7 +62,7 @@ function playTechBeep(tipo) {
     }
 }
 
-// ATUALIZE A FUNÇÃO abrirProjeto para incluir o desbloqueio
+// abrirProjeto para incluir o desbloqueio
 function abrirProjeto(id) {
     iniciarAudioContext(); // Desbloqueia o áudio no clique do usuário
     
@@ -84,16 +86,15 @@ function abrirProjeto(id) {
 }
 
 
-// ================= EVENTOS PRINCIPAIS =================
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. RELÓGIO (Corrigido para o ID 'clock' que está no seu HTML)
+
     setInterval(() => {
         const h = document.getElementById("clock");
         if(h) h.innerText = new Date().toLocaleTimeString('pt-BR');
     }, 1000);
 
-    // 2. EFEITO MÁQUINA DE ESCREVER
+ 
     const termText = "Estudante de ADS e Desenvolvedor Júnior. Apaixonado por programação, lógica e resolução de problemas reais. Buscando minha primeira oportunidade no mercado de tecnologia para aplicar meus conhecimentos, absorver novas stacks e gerar valor corporativo. READY_FOR_DEPLOYMENT...";
     let i = 0;
     function typeWriter() {
@@ -106,15 +107,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     setTimeout(typeWriter, 1500);
 
-    // 3. CLIMA
+    //  CLIMA
     buscarClima();
 
-    // 4. TEMA (Corrigido para o ID 'theme-toggle')
+    //  TEMA 
     document.getElementById('theme-toggle')?.addEventListener('change', (e) => {
         document.documentElement.setAttribute('data-theme', e.target.checked ? 'light' : 'dark');
     });
 
-    // 5. DRAG & DROP INICIALIZAÇÃO
+    //  DRAG & DROP INICIALIZAÇÃO
     const wWeather = document.querySelector('.widget-weather');
     const wStatus = document.querySelector('.widget-status');
     const wModal = document.querySelector('.modal-content');
